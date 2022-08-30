@@ -29,9 +29,6 @@ class Game: Object, ObjectKeyIdentifiable {
     @Persisted var lineJudge4Name = ""
     @Persisted var penaltiessTeam1 = 0
     @Persisted var penaltiessTeam2 = 0
-    //@Persisted var player2Points = 0
-    //@Persisted var player3Points = 0
-    //@Persisted var player4Points = 0
     @Persisted var player1Points = 0
     @Persisted var player2Points = 0
     @Persisted var player3Points = 0

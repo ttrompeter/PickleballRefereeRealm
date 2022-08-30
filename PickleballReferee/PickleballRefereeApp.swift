@@ -12,7 +12,7 @@ struct PickleballRefereeApp: App {
     
     // Environment Objects so can pass throughout project using environmentObject
     @StateObject var sheetManager = SheetManager()
-    var scoresheetManager = ScoresheetManager()
+    @StateObject var scoresheetManager = ScoresheetManager()
     @StateObject var timeWrapper = TimerWrapper()
     
     var body: some Scene {

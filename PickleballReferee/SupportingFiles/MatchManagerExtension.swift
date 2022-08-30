@@ -11,8 +11,8 @@ import SwiftUI
 extension MatchView {
     
     func calculateMatchFinalGameScores() {
-        print("Starting calcualteMatchFinalGameScores")
-        // Prepare a string of the Game scores for the Match in proper format based on winning team and set it in scoresheetManager.matchFinalGameScores
+        // Prepare a string of the Game scores for the Match in proper format based on winning team and match format and set it in scoresheetManager.matchFinalGameScores
+        var matchGamesDisplay = ""
         var game1Display = "0 - 0"
         var game2Display = "0 - 0"
         var game3Display = "0 - 0"
@@ -29,50 +29,79 @@ extension MatchView {
             if match.games[1].gameWinningTeam == 1 {
                 game2Display = match.games[1].gameFinalScore
             } else {
-                // Reverse the score
+                game2Display = reverseGameScore(gameScore: match.games[1].gameFinalScore)
             }
             if match.games[2].gameWinningTeam == 1 {
                 game3Display = match.games[2].gameFinalScore
             } else {
-                // Reverse the score
+                game3Display = reverseGameScore(gameScore: match.games[2].gameFinalScore)
             }
             if match.games[3].gameWinningTeam == 1 {
                 game4Display = match.games[3].gameFinalScore
             } else {
-                // Reverse the score
+                game4Display = reverseGameScore(gameScore: match.games[3].gameFinalScore)
             }
             if match.games[4].gameWinningTeam == 1 {
                 game5Display = match.games[4].gameFinalScore
             } else {
+                game5Display = reverseGameScore(gameScore: match.games[4].gameFinalScore)
+            }
+        } else if match.matchWinningTeam == 2 {
+            if match.games[0].gameWinningTeam == 2 {
+                game1Display = match.games[0].gameFinalScore
+            } else {
                 // Reverse the score
+                game1Display = reverseGameScore(gameScore: match.games[0].gameFinalScore)
+            }
+            if match.games[1].gameWinningTeam == 2 {
+                game2Display = match.games[1].gameFinalScore
+            } else {
+                game2Display = reverseGameScore(gameScore: match.games[1].gameFinalScore)
+            }
+            if match.games[2].gameWinningTeam == 2 {
+                game3Display = match.games[2].gameFinalScore
+            } else {
+                game3Display = reverseGameScore(gameScore: match.games[2].gameFinalScore)
+            }
+            if match.games[3].gameWinningTeam == 2 {
+                game4Display = match.games[3].gameFinalScore
+            } else {
+                game4Display = reverseGameScore(gameScore: match.games[3].gameFinalScore)
+            }
+            if match.games[4].gameWinningTeam == 2 {
+                game5Display = match.games[4].gameFinalScore
+            } else {
+                game5Display = reverseGameScore(gameScore: match.games[4].gameFinalScore)
+            }
+        }
+        switch match.selectedMatchFormat {
+        case 1:
+            matchGamesDisplay = game1Display
+        case 2:
+            // Check if 3rd game was played or if a team won in only 2 games
+            if match.games[2].gameWinningTeam != 0 {
+                matchGamesDisplay = game1Display + " \u{2022} " + game2Display + " \u{2022} " + game3Display
+            } else {
+                matchGamesDisplay = game1Display + " \u{2022} " + game2Display
             }
             
-            
-        } else {
-            
+        case 3:
+            matchGamesDisplay = game1Display + " \u{2022} " + game2Display + " \u{2022} " + game3Display + " \u{2022} " + game4Display + " \u{2022} " + game5Display
+        default:
+            print("Error in selectedMatchFormat of calculateFinalGameScores")
         }
-        let matchGamesDisplay = game1Display + "  " + game2Display + "  " + game3Display + "  " + game4Display + "  " + game5Display
-        print(matchGamesDisplay)
         scoresheetManager.matchFinalGameScores = matchGamesDisplay
     }
     
     func reverseGameScore(gameScore: String) -> String {
-        
         var firstScore = ""
         var secondScore = ""
-//        let fullName = namePlayer2Team2
         var components = gameScore.components(separatedBy: " - ")
         if components.count > 0 {
             firstScore = components.removeFirst()
             secondScore = components.joined(separator: " ")
-        } else {
-            //firstName = fullName
         }
-        print("firstScore: \(firstScore)")
-        print("secondScore: \(secondScore)")
         return "\(secondScore) - \(firstScore)"
-        
-        return ""
     }
     
     func closeGame() {
@@ -171,12 +200,16 @@ extension MatchView {
             team2Games += 1
         }
         if team1Games > team2Games {
-            matchResult = "\(team1Games) - \(team2Games) Games"
+            matchResult = "\(team1Games) - \(team2Games)"
         } else {
-            matchResult = "\(team2Games) - \(team1Games) Games"
+            matchResult = "\(team2Games) - \(team1Games)"
         }
         $match.matchFinalScore.wrappedValue = matchResult
       
+        
+    }
+    
+    func createNewMatch() {
         
     }
     

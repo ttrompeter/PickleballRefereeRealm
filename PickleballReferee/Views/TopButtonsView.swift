@@ -64,7 +64,7 @@ struct TopButtonsView: View {
             
             if match.isMatchCompleted {
                 Button {
-                    // Set up a new match
+                    //createNewMatch()
                 } label: {
                     Text("New Match")
                 }
@@ -96,6 +96,27 @@ struct TopButtonsView: View {
         .background(Constants.CLOUDS)
     }
     
+    mutating func createNewMatch() {
+        
+        let newMatch = Match()
+        let game1 = Game()
+        game1.gameNumber = 1
+        newMatch.games.append(game1)
+        let game2 = Game()
+        game2.gameNumber = 2
+        newMatch.games.append(game2)
+        let game3 = Game()
+        game3.gameNumber = 3
+        newMatch.games.append(game3)
+        let game4 = Game()
+        game4.gameNumber = 4
+        newMatch.games.append(game4)
+        let game5 = Game()
+        game5.gameNumber = 5
+        newMatch.games.append(game5)
+        match = newMatch
+        //saveMatch()
+    }
 }
 
 struct TopButtonsView_Previews: PreviewProvider {

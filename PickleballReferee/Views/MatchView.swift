@@ -110,11 +110,11 @@ struct MatchView: View {
                             VStack (alignment: .leading) {
                                 Text(match.matchNumber)
                                 Text(match.courtNumber)
-                                Text(match.games[match.currentGameNumber - 1].refereeName)
+                                Text(match.games[match.currentGameArrayIndex].refereeName)
                                 Text(match.matchFormatDescription)
                                 Text(match.matchStyleDescription)
                                 Text(match.matchScoringFormatDescription)
-                                Text(match.games[match.currentGameNumber - 1].gameFirstServerName)
+                                Text(match.games[match.currentGameArrayIndex].gameFirstServerName)
                             }
                             .font(.subheadline)
                             .foregroundColor(Constants.DARK_SLATE)
@@ -342,28 +342,30 @@ struct MatchView: View {
                                             .font(.largeTitle)
                                             .foregroundColor(Constants.CRIMSON)
                                     }
-                                    
-                                    HStack {
-                                        if match.games[0].isGameCompleted {
-                                            Text("Game 1: \(match.games[0].gameFinalScore)")
+                                    if match.isMatchCompleted {
+                                        Text("Game Scores: \(scoresheetManager.matchFinalGameScores)")
+                                            .font(.footnote)
+                                            .foregroundColor(Constants.MINT_LEAF)
+                                    } else {
+                                        HStack {
+                                            if match.games[0].isGameCompleted {
+                                                Text("Game 1: \(match.games[0].gameFinalScore)")
+                                            }
+                                            if match.games[1].isGameCompleted {
+                                                Text("Game 2: \(match.games[1].gameFinalScore)")
+                                            }
+                                            // this likely will not show in 2 of 3 games match since match ended
+                                            if match.games[2].isGameCompleted {
+                                                Text("Game 3: \(match.games[2].gameFinalScore)")
+                                            }
+                                            if match.games[3].isGameCompleted {
+                                                Text("Game 4: \(match.games[3].gameFinalScore)")
+                                            }
+                                            // Game 5 not included since match is over and isMatchCompleted display above is used
                                         }
-                                        if match.games[1].isGameCompleted {
-                                            Text("Game 2: \(match.games[1].gameFinalScore)")
-                                        }
-                                        // this likely will not show in 2 of 3 games match since match ended
-                                        if match.games[2].isGameCompleted {
-                                            Text("Game 3: \(match.games[2].gameFinalScore)")
-                                        }
-                                        if match.games[3].isGameCompleted {
-                                            Text("Game 4: \(match.games[3].gameFinalScore)")
-                                        }
-                                        // This will never show since game is over and match ended
-                                        if match.games[4].isGameCompleted {
-                                            Text("Game 5: \(match.games[4].gameFinalScore)")
-                                        }
+                                        .font(.footnote)
+                                        .foregroundColor(Constants.MINT_LEAF)
                                     }
-                                    .font(.footnote)
-                                    .foregroundColor(Constants.MINT_LEAF)
                                 }
                                 .padding(10)
                                 .background(Constants.CLOUDS)
@@ -426,21 +428,28 @@ struct MatchView: View {
             // Initials & Score Recording Section
             if match.isMatchCompleted {
                 Section {
-                    VStack {
-                        HStack {
+                    ZStack {
+                        Rectangle()
+                            .frame(width: CGFloat(410), height: CGFloat(35))
+                            .foregroundColor(Constants.MINT_LEAF)
+                            .cornerRadius(10)
+                        
+                        VStack {
                             HStack {
-                                Text("Winnng Team Score: ")
-                                Text(match.matchFinalScore)
+                                HStack {
+                                    Text("Winnng Team Score: ")
+                                    Text(match.matchFinalScore)
+                                }
+                                HStack {
+                                    Text("      Initials: ")
+                                    Text(scoresheetManager.playerInitials)
+                                }
                             }
-                            HStack {
-                                Text("Initials: ")
-                                Text(scoresheetManager.playerInitials)
-                            }
+                            .padding(10)
+                            .font(.callout)
+                            .foregroundColor(Constants.WHITE)
+                            //.background(Constants.MINT_LEAF)
                         }
-                        .padding(5)
-                        .font(.subheadline)
-                        .foregroundColor(Constants.DARK_SLATE)
-                        .background(Constants.SILVER)
                     }
                 }
             }

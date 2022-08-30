@@ -83,7 +83,7 @@ struct ScreenshotAdminView: View {
                                         .font(.headline)
                                         .foregroundColor(Constants.MINT_LEAF)
                                 }
-                                .sheet(isPresented: $presentEnlargedImage) { LargeScoresheetImageView() }
+                                .sheet(isPresented: $presentEnlargedImage) { EnlargedScoresheetImageView() }
                                 
                             }
                             VStack {

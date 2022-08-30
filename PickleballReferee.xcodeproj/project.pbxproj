@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E319215828AEE277008269D5 /* StorageManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319215728AEE277008269D5 /* StorageManger.swift */; };
-		E319215A28AFEB64008269D5 /* LargeScoresheetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319215928AFEB64008269D5 /* LargeScoresheetImageView.swift */; };
+		E319215A28AFEB64008269D5 /* EnlargedScoresheetImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319215928AFEB64008269D5 /* EnlargedScoresheetImageView.swift */; };
 		E319215C28AFFE39008269D5 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319215B28AFFE39008269D5 /* IntroductionView.swift */; };
 		E319215E28B004D3008269D5 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319215D28B004D3008269D5 /* CheckToggleStyle.swift */; };
 		E323EB3E28B8EC630040170F /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323EB3D28B8EC630040170F /* Archive.swift */; };
@@ -96,7 +96,7 @@
 
 /* Begin PBXFileReference section */
 		E319215728AEE277008269D5 /* StorageManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManger.swift; sourceTree = "<group>"; };
-		E319215928AFEB64008269D5 /* LargeScoresheetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeScoresheetImageView.swift; sourceTree = "<group>"; };
+		E319215928AFEB64008269D5 /* EnlargedScoresheetImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargedScoresheetImageView.swift; sourceTree = "<group>"; };
 		E319215B28AFFE39008269D5 /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 		E319215D28B004D3008269D5 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		E323EB3D28B8EC630040170F /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
@@ -240,12 +240,12 @@
 				E32C2EA228B9C24000BBA503 /* ChangeSidesTm1View.swift */,
 				E33D1CFF2899D9DD00B68F61 /* ChangeSidesTm2View.swift */,
 				E349327C2893B8490087ABB1 /* CorrectionView.swift */,
+				E319215928AFEB64008269D5 /* EnlargedScoresheetImageView.swift */,
 				E3632FC22893A32100F29D83 /* FunctionalityButtonsView.swift */,
 				E349327A2893B7FC0087ABB1 /* HelpView.swift */,
 				E3632F9C28937EC900F29D83 /* HomeView.swift */,
 				E319215B28AFFE39008269D5 /* IntroductionView.swift */,
 				E327829B28B03F8F00690D36 /* IntroductionOverviewView.swift */,
-				E319215928AFEB64008269D5 /* LargeScoresheetImageView.swift */,
 				E3980F4828B59EAB00E72BD3 /* MatchOverView.swift */,
 				E3632FA028937F1E00F29D83 /* MatchSetupView.swift */,
 				E3F3284228BBC51A0050400F /* MatchStatisticsView.swift */,
@@ -488,7 +488,7 @@
 				E396157E28A19A29001D3596 /* ScreenshotAdminView.swift in Sources */,
 				E3632F9728937C2100F29D83 /* Match.swift in Sources */,
 				E3632FBB2893A1DE00F29D83 /* TeamListingTeam1.swift in Sources */,
-				E319215A28AFEB64008269D5 /* LargeScoresheetImageView.swift in Sources */,
+				E319215A28AFEB64008269D5 /* EnlargedScoresheetImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

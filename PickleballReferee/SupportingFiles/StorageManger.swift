@@ -9,6 +9,82 @@ import Foundation
 import UIKit
 import SwiftUI
 
+
+class StorageManager {
+    
+    static let gamesBackupURL = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("pickleballgamesbackup.json")
+    static let matchBackupURL = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("pickleballmatchbackup.json")
+    static let matchsBackupURL = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("pickleballmatchsbackup.json")
+    
+    // TODO: - Create seed JSON files for games and match
+    static let gamesBundleURL = Bundle.main.url(forResource: "SeedGames", withExtension: "json")!
+    static let matchBundleURL = Bundle.main.url(forResource: "SeedMatch", withExtension: "json")!
+    
+//    static func retrieveMatch() -> Match {
+//        var url = matchBackupURL
+//        if !FileManager().fileExists(atPath: matchBackupURL.path) {
+//            url = matchBundleURL
+//        }
+//        let decoder = JSONDecoder()
+//        guard let data = try? Data(contentsOf: url) else {
+//            fatalError("Unable to obtain match data from url")
+//        }
+//        guard let matchItem = try? decoder.decode(Match.self, from: data) else {
+//            fatalError("Uable to decode match data")
+//        }
+//        return matchItem
+//    }
+    
+    
+    static func storeMatch(match:Match) {
+        
+//        let encoder = JSONEncoder()
+//        guard let matchJSONData = try? encoder.encode(match) else {
+//            fatalError("Could not encode match data")
+//        }
+//        let matchJSON = String(data: matchJSONData, encoding: .utf8)!
+//        do {
+//            try matchJSON.write(to: matchBackupURL, atomically: true, encoding: .utf8)
+//        } catch {
+//            print("Could not save match file to directory: \(error.localizedDescription)")
+//        }
+    }
+    
+//    static func retrieveGames() -> [Game] {
+//        var url = gamesBackupURL
+//        if !FileManager().fileExists(atPath: gamesBackupURL.path) {
+//            url = gamesBundleURL
+//        }
+//        let decoder = JSONDecoder()
+//        guard let data = try? Data(contentsOf: url) else {
+//            fatalError("Unable to obtain games data from url")
+//        }
+//        guard let gameItems = try? decoder.decode([Game].self, from: data) else {
+//            fatalError("Uable to decode games data")
+//        }
+//        return gameItems
+//    }
+    
+    
+    static func storeGames(games:[Game]) {
+        
+//        let encoder = JSONEncoder()
+//        guard let gamesJSONData = try? encoder.encode(games) else {
+//            fatalError("Could not encode games data")
+//        }
+//        let gamesJSON = String(data: gamesJSONData, encoding: .utf8)!
+//        do {
+//            try gamesJSON.write(to: gamesBackupURL, atomically: true, encoding: .utf8)
+//        } catch {
+//            print("Could not save games file to directory: \(error.localizedDescription)")
+//        }
+    }
+}
+
+
+
+
+
 enum StorageType {
     case userDefaults
     case fileSystem

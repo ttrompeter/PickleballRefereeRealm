@@ -1,5 +1,5 @@
 //
-//  LargeScoresheetImageView.swift
+//  EnlargedScoresheetImageView.swift
 //  PickleballReferee
 //
 //  Created by Tom Trompeter on 8/19/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LargeScoresheetImageView: View {
+struct EnlargedScoresheetImageView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sheetManager: SheetManager
@@ -42,8 +42,8 @@ struct LargeScoresheetImageView: View {
     }
 }
 
-struct LargeScoresheetImageView_Previews: PreviewProvider {
+struct enlargedScoresheetImageView_Previews: PreviewProvider {
     static var previews: some View {
-        LargeScoresheetImageView()
+        EnlargedScoresheetImageView()
     }
 }

@@ -34,9 +34,15 @@ struct MatchOverView: View {
                 VStack {
                     Text("Winning Team")
                     Text(match.matchWinner)
-                    HStack {
-                        Text("Score: ")
-                        Text(match.matchFinalScore)
+                    VStack {
+                        HStack {
+                            Text("Match Score: ")
+                            Text(match.matchFinalScore)
+                        }
+                        HStack {
+                            Text("Game Scores: ")
+                            Text(scoresheetManager.matchFinalGameScores)
+                        }
                     }
                     .padding(.top, 10 )
                     .font(.headline)
@@ -60,23 +66,21 @@ struct MatchOverView: View {
             
             VStack {
                 HStack {
-                    HStack {
-                        Text("Winning Team Player Initials: ")
-                        TextField("Initials", text: $scoresheetManager.playerInitials)
-                            .frame(width: 60)
-                            .foregroundColor(Constants.POMAGRANATE)
-                            .keyboardType(.numberPad)
-                            .focused($matchOverInFocus, equals: .initials)
-                            .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                                    self.matchOverInFocus = .initials
-                                }
+                    Text("Winning Team Player Initials: ")
+                    TextField("Initials", text: $scoresheetManager.playerInitials)
+                        .frame(width: 60)
+                        .foregroundColor(Constants.POMAGRANATE)
+                        .keyboardType(.numberPad)
+                        .focused($matchOverInFocus, equals: .initials)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                self.matchOverInFocus = .initials
                             }
-                    }
+                        }
                 }
+                .padding(10)
                 .font(.headline)
-                .foregroundColor(Constants.REDDISH)
-                //.background(Constants.CLOUDS)
+                .foregroundColor(Constants.POMAGRANATE)
             }
             .padding(.horizontal, 120)
             

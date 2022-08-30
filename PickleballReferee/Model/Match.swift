@@ -53,7 +53,7 @@ class Match: Object, ObjectKeyIdentifiable {
     @Persisted var scoreDisplay = "0 - 0 - 2"
     @Persisted var selectedDoublesPlay = 2
     @Persisted var selectedGameFormat = 7
-    @Persisted var selectedMatchFormat = 1     //Should be 2 as default
+    @Persisted var selectedMatchFormat = 2     //Should be 2 as default
     @Persisted var selectedScoringFormat = 1
     @Persisted var servingPlayerNumber = 1           // Should be 0
     @Persisted var specialTeam1 = "SpecialTm1"
@@ -63,22 +63,76 @@ class Match: Object, ObjectKeyIdentifiable {
     
     @Persisted var games = RealmSwift.List<Game>()
     
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
-    var matchTotalPointsWinningTeam: Int {
-        var matchTotalPoints = 0
-        if isMatchCompleted {
-            switch matchWinningTeam {
-            case 1:
-                matchTotalPoints = games[0].player1Points + games[0].player2Points + games[1].player1Points + games[1].player2Points + games[2].player1Points + games[2].player2Points + games[3].player1Points + games[3].player2Points + games[4].player1Points + games[4].player2Points
-            case 2:
-                matchTotalPoints = games[0].player3Points + games[0].player4Points + games[1].player3Points + games[1].player4Points + games[2].player3Points + games[2].player4Points + games[3].player3Points + games[3].player4Points + games[4].player3Points + games[4].player4Points
-            default:
-                print("Error calculating matchTotalPointsWinningTeam")
-            }
-        } else {
-            //print("isMatchCompleted is false in computed property matchTotalPointsWinningTeam in MatchView")
+    
+    
+    var gameFormatDescription: String {
+        switch selectedGameFormat {
+        case 7:
+            return "7 points, win by 2 points"
+        case 11:
+            return "11 points, win by 2 points"
+        case 15:
+            return "15 points, win by 2 points"
+        case 21:
+            return "21 points, win by 2 points"
+        default:
+            print("Error selecting gameFormatDescription.")
+            return "Unknown Game Format"
         }
-        return matchTotalPoints
+    }
+
+    var matchComputedDuration: Double {
+        if isMatchCompleted {
+            print("match start: \(matchStartDateValue),   match end: \(matchEndDateValue)")
+            let matchDurationSeconds = matchStartDateValue.distance(to: matchEndDateValue)
+            return (matchDurationSeconds / 60)
+        } else {
+            print("isMatchCompleted is false in matchComputedDuration so can't provide useful result.")
+            return 0.0
+        }
+        
+    }
+    
+    var matchFormatDescription: String {
+        switch selectedMatchFormat {
+        case 1:
+            return "Single game"
+        case 2:
+            return "Best 2 out of 3 games"
+        case 3:
+            return "Best 3 out of 5 games"
+        default:
+            print("Error selecting matchFormatDescription.")
+            return "Unknown Match Format"
+        }
+    }
+    
+    var matchScoringFormatDescription: String {
+        switch selectedScoringFormat {
+        case 1:
+            return "Regular Scoring"
+        case 2:
+            return "Rally Scoring"
+        default:
+            print("Error selecting gameFormatDescription.")
+            return "Unknown Scoring"
+        }
+    }
+    
+    var matchStyleDescription: String {
+        switch selectedDoublesPlay {
+        case 1:
+            return "Doubles"
+        case 2:
+            return "Singles"
+        default:
+            print("Error selecting gameFormatDescription.")
+            return "Unknown"
+        }
     }
     
     var matchTotalPointsLosingTeam: Int {
@@ -99,16 +153,21 @@ class Match: Object, ObjectKeyIdentifiable {
         return matchTotalPoints
     }
     
-    var matchComputedDuration: Double {
+    var matchTotalPointsWinningTeam: Int {
+        var matchTotalPoints = 0
         if isMatchCompleted {
-            print("match start: \(matchStartDateValue),   match end: \(matchEndDateValue)")
-            let matchDurationSeconds = matchStartDateValue.distance(to: matchEndDateValue)
-            return (matchDurationSeconds / 60)
+            switch matchWinningTeam {
+            case 1:
+                matchTotalPoints = games[0].player1Points + games[0].player2Points + games[1].player1Points + games[1].player2Points + games[2].player1Points + games[2].player2Points + games[3].player1Points + games[3].player2Points + games[4].player1Points + games[4].player2Points
+            case 2:
+                matchTotalPoints = games[0].player3Points + games[0].player4Points + games[1].player3Points + games[1].player4Points + games[2].player3Points + games[2].player4Points + games[3].player3Points + games[3].player4Points + games[4].player3Points + games[4].player4Points
+            default:
+                print("Error calculating matchTotalPointsWinningTeam")
+            }
         } else {
-            print("isMatchCompleted is false in matchComputedDuration so can't provide useful result.")
-            return 0.0
+            //print("isMatchCompleted is false in computed property matchTotalPointsWinningTeam in MatchView")
         }
-        
+        return matchTotalPoints
     }
     
     var player1FirstName: String {
@@ -160,65 +219,6 @@ class Match: Object, ObjectKeyIdentifiable {
             firstName = fullName
         }
         return firstName
-    }
-    
-    var matchFormatDescription: String {
-        switch selectedMatchFormat {
-        case 1:
-            return "Single game"
-        case 2:
-            return "Best 2 out of 3 games"
-        case 3:
-            return "Best 3 out of 5 games"
-        default:
-            print("Error selecting matchFormatDescription.")
-            return "Unknown Match Format"
-        }
-    }
-    
-    var gameFormatDescription: String {
-        switch selectedGameFormat {
-        case 7:
-            return "7 points, win by 2 points"
-        case 11:
-            return "11 points, win by 2 points"
-        case 15:
-            return "15 points, win by 2 points"
-        case 21:
-            return "21 points, win by 2 points"
-        default:
-            print("Error selecting gameFormatDescription.")
-            return "Unknown Game Format"
-        }
-    }
-    
-    var matchStyleDescription: String {
-        switch selectedDoublesPlay {
-        case 1:
-            return "Doubles"
-        case 2:
-            return "Singles"
-        default:
-            print("Error selecting gameFormatDescription.")
-            return "Unknown"
-        }
-    }
-    
-    var matchScoringFormatDescription: String {
-        switch selectedScoringFormat {
-        case 1:
-            return "Regular Scoring"
-        case 2:
-            return "Rally Scoring"
-        default:
-            print("Error selecting gameFormatDescription.")
-            return "Unknown Scoring"
-        }
-    }
-    
-    
-    override class func primaryKey() -> String? {
-        return "id"
     }
     
     

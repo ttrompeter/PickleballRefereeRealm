@@ -17,16 +17,16 @@ class Archive: Object, ObjectKeyIdentifiable {
      // Save actual Match and Game data so it can be recalled and manipulated if desired
      */
     @Persisted(primaryKey: true) var id: ObjectId
-    @Persisted var scoresheetMatch1Location = ""
-    @Persisted var scoresheetMatch2Location = ""
-    @Persisted var scoresheetMatch3Location = ""
-    @Persisted var scoresheetMatch4Location = ""
-    @Persisted var scoresheetMatch5Location = ""
-    @Persisted var scoresheetMatch6Location = ""
-    @Persisted var scoresheetMatch7Location = ""
-    @Persisted var scoresheetMatch8Location = ""
-    @Persisted var scoresheetMatch9Location = ""
-    @Persisted var scoresheetMatch10Location = ""
+    @Persisted var screenshotMatch1Location = ""
+    @Persisted var screenshotMatch2Location = ""
+    @Persisted var screenshotMatch3Location = ""
+    @Persisted var screenshotMatch4Location = ""
+    @Persisted var screenshotMatch5Location = ""
+    @Persisted var screenshotMatch6Location = ""
+    @Persisted var screenshotMatch7Location = ""
+    @Persisted var screenshotMatch8Location = ""
+    @Persisted var screenshotMatch9Location = ""
+    @Persisted var screenshotMatch10Location = ""
     @Persisted var archivedMatch1MatchDate: Date?
     @Persisted var archivedMatch2MatchDate: Date?
     @Persisted var archivedMatch3MatchDate: Date?

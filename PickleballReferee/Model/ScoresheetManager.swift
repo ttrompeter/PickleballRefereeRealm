@@ -43,7 +43,7 @@ final class ScoresheetManager: ObservableObject {
     @Published var team1MatchStartingServerName = ""
     @Published var team2MatchStartingServerName = ""
     
-   
+   // For Archive storage (not Realm)
     
     
     
